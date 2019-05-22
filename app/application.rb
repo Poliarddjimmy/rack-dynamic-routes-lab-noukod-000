@@ -7,8 +7,8 @@ class Application
  
     if req.path.match(/items/)
       if @@items.empty?
-        resp.write "Your cart is empty"
-      resp.status = 400
+        resp.write "Item not found"
+        resp.status = 400
       else
         @@items.each do |item|
           resp.write "#{item.price}\n"
