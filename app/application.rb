@@ -1,7 +1,7 @@
 require_relative 'item'
 class Application
 
-    items = Item
+    items = Item.initialize
     @@cart = []
   
     def call(env)
