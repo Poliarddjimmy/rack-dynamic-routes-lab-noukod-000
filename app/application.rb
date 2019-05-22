@@ -1,53 +1,34 @@
 class Application
-#
-#   @@items = []
-#
-#   def call(env)
-#     resp = Rack::Response.new
-#     req = Rack::Request.new(env)
-#
-#     if req.path.match(/items/)
-#       item_name = req.path.split(/items/).last
-#       item = @@item.find{|i| i.name == item_name}
-#
-#       if item.nil?
-#         resp.write "Item not found"
-#         resp.status = 400
-#       else
-#         resp.write resp.price
-#       end
-#     else
-#       resp.write "Route not found"
-#       resp.status = 404
-#     end
-#     resp.finish
-#   end
-#
-# end
-class Application
-
-  @@items = []
-
+  @@items = ["Apple","Carrots","Pears"]
+  @@cart = []
   def call(env)
     resp = Rack::Response.new
     req = Rack::Request.new(env)
-
+ 
     if req.path.match(/items/)
-      item_name = req.path.split("/items/").last
+      item_name = req.path.split(/items/).last
+      itemo = @@item.find{|i| i.name == item_name}
 
-      item = @@items.find{|i| i.name == item_name}
-
-      if item.nil?
-        resp.write "Item not found"
-        resp.status = 400
+        if itemo.nil?
+          resp.write "Item not found"
+          resp.status = 400
+        else
+          resp.write resp.price
+        end
+    elsif req.path.match(/cart/)
+      if @@cart.empty?
+        resp.write "Your cart is empty"
       else
-        resp.write item.price
+        @@cart.each do |item|
+          resp.write "#{item}\n"
+        end
       end
+        
     else
       resp.write "Route not found"
       resp.status = 404
     end
-
+ 
     resp.finish
   end
 end
