@@ -8,7 +8,7 @@ class Application
     if req.path.match(/items/)
         if @@items.empty?
           resp.write "Item not found"
-          resp.status = 400
+          resp.status = 404
         else
           @@items.each do |item|
             resp.write "#{item.price}\n"
