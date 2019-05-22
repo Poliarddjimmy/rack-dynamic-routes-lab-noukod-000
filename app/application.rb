@@ -13,9 +13,7 @@ class Application
           resp.write "Item not found"
           resp.status = 400
         else
-          @@items.each do |item|
-            resp.write "#{item.price}\n"
-          end
+          resp.write resp.price
         end
     elsif req.path.match(/cart/)
       if @@cart.empty?
