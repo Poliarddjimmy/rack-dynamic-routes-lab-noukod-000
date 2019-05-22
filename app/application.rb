@@ -1,7 +1,7 @@
 require_relative 'item'
 class Application
 
-    items = ["Apples","Carrots","Pears"]
+    items = Item
     @@cart = []
   
     def call(env)
