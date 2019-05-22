@@ -6,7 +6,7 @@ class Application
     req = Rack::Request.new(env)
  
     if req.path.match(/items/)
-        if @@item.empty?
+        if @@items.empty?
           resp.write "Item not found"
           resp.status = 400
         else
